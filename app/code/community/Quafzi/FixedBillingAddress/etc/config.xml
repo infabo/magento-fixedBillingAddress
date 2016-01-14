@@ -98,6 +98,7 @@
             <address>
                 <change_billing_allowed>1</change_billing_allowed>
                 <change_shipping_allowed>1</change_shipping_allowed>
+                <use_billing_for_shipping_forbidden>0</use_billing_for_shipping_forbidden>
                 <select_billing_allowed>1</select_billing_allowed>
                 <select_shipping_allowed>1</select_shipping_allowed>
             </address>

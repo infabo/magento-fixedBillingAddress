@@ -45,6 +45,14 @@ class Quafzi_FixedBillingAddress_Helper_Data extends Mage_Core_Helper_Abstract
         return (false === $isAdmin && true === $isSelectable && true === $hasShippingAddress);
     }
 
+    public function canUseBillingAddressForShipping()
+    {
+        $isAdmin = Mage::getSingleton('admin/session')->isLoggedIn();
+        $isForbidden = (bool)(int)Mage::getStoreConfig('customer/address/use_billing_for_shipping_forbidden');
+
+        return (false === $isAdmin && false === $isForbidden);
+    }
+
     /**
      * if customer already has a billing address
      *

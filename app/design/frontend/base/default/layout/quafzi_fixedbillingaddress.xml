@@ -22,6 +22,12 @@
         </reference>
     </checkout_onepage_index>
     <checkout_onepage_progress>
+        <reference name="head">
+            <action method="addItem" ifconfig="customer/address/use_billing_for_shipping_forbidden">
+                <type>skin_js</type>
+                <name>js/quafzi_fixedbillingaddress/use_billing_for_shipping_forbidden.min.js</name>
+            </action>
+        </reference>
         <reference name="root">
             <action method="setTemplate"><template>quafzi_fixedbillingaddress/checkout/onepage/progress.phtml</template></action>
         </reference>
