@@ -36,8 +36,8 @@
                 <address>
                     <?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>
                 </address>
-<?php /* THIS IS THE ONLY CHANGE OF THIS FILE */ ?>
-                <?php if (false === Mage::helper('quafzi_fixedbillingaddress/data')->isAddressFixed()): ?>
+<?php /* THIS IS THE FIRST CHANGE OF THIS FILE */ ?>
+                <?php if (false === Mage::helper('quafzi_fixedbillingaddress/data')->isBillingAddressFixed()): ?>
                 <p><a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Billing Address') ?></a></p>
                 <?php endif; ?>
 <?php /* END OF CHANGE */ ?>
@@ -55,7 +55,11 @@
                 <address>
                     <?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>
                 </address>
+<?php /* THIS IS THE SECOND CHANGE OF THIS FILE */ ?>
+            <?php if (false === Mage::helper('quafzi_fixedbillingaddress/data')->isShippingAddressFixed()): ?>
                 <p><a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Shipping Address') ?></a></p>
+            <?php endif; ?>
+<?php /* END OF CHANGE */ ?>
             </li>
         <?php else: ?>
             <li class="item empty">

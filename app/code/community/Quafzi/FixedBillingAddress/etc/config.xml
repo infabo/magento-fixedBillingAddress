@@ -5,6 +5,7 @@
  * @package    Quafzi_FixedBillingAddress
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @author     Thomas Birke <tbirke@netextreme.de>
+ * @author     Ingo Fabbri <if@newtown.at>
  */
 -->
 <config>
@@ -18,6 +19,8 @@
             <checkout>
                 <rewrite>
                     <onepage_billing>Quafzi_FixedBillingAddress_Block_Checkout_Onepage_Billing</onepage_billing>
+                    <onepage_shipping>Quafzi_FixedBillingAddress_Block_Checkout_Onepage_Sipping</onepage_shipping>
+                    <onepage_shipping>Quafzi_FixedBillingAddress_Block_Checkout_Onepage_Shipping</onepage_shipping>
                 </rewrite>
             </checkout>
             <customer>
@@ -69,6 +72,15 @@
                     </ensureFixedBillingAddress>
                 </observers>
             </controller_action_predispatch_checkout_onepage_saveBilling>
+            <controller_action_predispatch_checkout_onepage_saveShipping>
+                <observers>
+                    <ensureFixedShippingAddress>
+                        <type>model</type>
+                        <class>quafzi_fixedbillingaddress/observer</class>
+                        <method>controller_action_predispatch_checkout_onepage_saveShipping</method>
+                    </ensureFixedShippingAddress>
+                </observers>
+            </controller_action_predispatch_checkout_onepage_saveShipping>
         </events>
     </frontend>
     <adminhtml>
@@ -86,6 +98,7 @@
         <customer>
             <address>
                 <change_billing_allowed>1</change_billing_allowed>
+                <change_shipping_allowed>1</change_shipping_allowed>
             </address>
         </customer>
     </default>

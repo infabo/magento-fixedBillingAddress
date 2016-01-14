@@ -35,8 +35,8 @@
                 <h4><?php echo $this->__('Default Billing Address') ?></h4>
                 <address>
                     <?php echo $this->getPrimaryBillingAddressHtml() ?><br />
-<?php /* THIS IS THE ONLY CHANGE OF THIS FILE */ ?>
-                <?php if (false === Mage::helper('quafzi_fixedbillingaddress/data')->isAddressFixed()): ?>
+<?php /* THIS IS THE FIRST CHANGE OF THIS FILE */ ?>
+                <?php if (false === Mage::helper('quafzi_fixedbillingaddress/data')->isBillingAddressFixed()): ?>
                     <a href="<?php echo $this->getPrimaryBillingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a>
                 <?php endif; ?>
 <?php /* END OF CHANGE */ ?>
@@ -46,7 +46,11 @@
                 <h4><?php echo $this->__('Default Shipping Address') ?></h4>
                 <address>
                     <?php echo $this->getPrimaryShippingAddressHtml() ?><br />
-                    <a href="<?php echo $this->getPrimaryShippingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a>
+<?php /* THIS IS THE SECOND CHANGE OF THIS FILE */ ?>
+                    <?php if (false === Mage::helper('quafzi_fixedbillingaddress/data')->isShippingAddressFixed()): ?>
+                        <a href="<?php echo $this->getPrimaryShippingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a>
+                    <?php endif; ?>
+<?php /* END OF CHANGE */ ?>
                 </address>
             </div>
         </div>

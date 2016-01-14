@@ -5,6 +5,7 @@
  * @package    Quafzi_FixedBillingAddress
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @author     Thomas Birke <tbirke@netextreme.de>
+ * @author     Ingo Fabbri <if@newtown.at>
  */
 class Quafzi_FixedBillingAddress_Model_Observer
 {
@@ -13,7 +14,7 @@ class Quafzi_FixedBillingAddress_Model_Observer
      */
     public function controller_action_predispatch_checkout_onepage_saveBilling($observer)
     {
-        if (false === Mage::helper('quafzi_fixedbillingaddress/data')->isAddressFixed()) {
+        if (false === Mage::helper('quafzi_fixedbillingaddress/data')->isBillingAddressFixed()) {
             return;
         }
         $request = $observer->getControllerAction()->getRequest();
@@ -24,15 +25,39 @@ class Quafzi_FixedBillingAddress_Model_Observer
     }
 
     /**
+     * force default shipping address in checkout
+     */
+    public function controller_action_predispatch_checkout_onepage_saveShipping($observer)
+    {
+        if (false === Mage::helper('quafzi_fixedbillingaddress/data')->isShippingAddressFixed()) {
+            return;
+        }
+        $request = $observer->getControllerAction()->getRequest();
+        if ($request->isPost() && $this->_isCustomerLoggedIn()) {
+            $shippingAddressId = $this->_getCustomer()->getDefaultShipping();
+            $request->setPost('shipping_address_id', $shippingAddressId);
+        }
+    }
+
+    /**
      * deny change of default billing address in customer account
      */
     public function controller_action_predispatch_customer_address_formPost($observer)
     {
         $request = $observer->getControllerAction()->getRequest();
-        if (Mage::helper('quafzi_fixedbillingaddress/data')->isAddressFixed()
+        if (Mage::helper('quafzi_fixedbillingaddress/data')->isBillingAddressFixed()
             && $request->isPost()
             && $this->_isCustomerLoggedIn()
             && $this->_getCustomer()->getDefaultBilling() == $request->getParam('id')
+        ) {
+            // trigger create instead of change
+            $request->setParam('id', null);
+        }
+
+        if (Mage::helper('quafzi_fixedbillingaddress/data')->isShippingAddressFixed()
+            && $request->isPost()
+            && $this->_isCustomerLoggedIn()
+            && $this->_getCustomer()->getDefaultShipping() == $request->getParam('id')
         ) {
             // trigger create instead of change
             $request->setParam('id', null);

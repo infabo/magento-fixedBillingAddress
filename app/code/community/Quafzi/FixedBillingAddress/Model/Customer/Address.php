@@ -5,6 +5,7 @@
  * @package    Quafzi_FixedBillingAddress
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @author     Thomas Birke <tbirke@netextreme.de>
+ * @author     Ingo Fabbri <if@newtown.at>
  */
 class Quafzi_FixedBillingAddress_Model_Customer_Address
     extends Mage_Customer_Model_Address
@@ -20,6 +21,6 @@ class Quafzi_FixedBillingAddress_Model_Customer_Address
 
     protected function _isFixed()
     {
-        return Mage::helper('quafzi_fixedbillingaddress/data')->isAddressFixed();
+        return Mage::helper('quafzi_fixedbillingaddress/data')->isBillingAddressFixed();
     }
 }
