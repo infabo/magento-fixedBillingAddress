@@ -1,11 +1,17 @@
 {
-    "name": "quafzi/fixed-billing-address",
+    "name": "newtown/fixed-customer-addresses",
     "type": "magento-module",
-    "description": "This Magento extension denies logged-in customers to change their billing address",
+    "description": "This Magento extension denies logged-in customers to change their billing/shipping address",
     "authors": [
         {
             "name": "Thomas Birke",
-            "email": "tbirke@netextreme.de"
+            "email": "tbirke@netextreme.de",
+            "role": "Author"
+        },
+        {
+            "name": "Ingo Fabbri",
+            "email": "if@newtown.at",
+            "role": "Author/Maintainer"
         }
     ],
     "require": {
