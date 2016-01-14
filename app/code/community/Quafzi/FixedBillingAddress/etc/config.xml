@@ -101,6 +101,8 @@
                 <use_billing_for_shipping_forbidden>0</use_billing_for_shipping_forbidden>
                 <select_billing_allowed>1</select_billing_allowed>
                 <select_shipping_allowed>1</select_shipping_allowed>
+                <create_modify_additional_address_allowed>1</create_modify_additional_address_allowed>
+                <delete_additional_address_allowed>1</delete_additional_address_allowed>
             </address>
         </customer>
     </default>

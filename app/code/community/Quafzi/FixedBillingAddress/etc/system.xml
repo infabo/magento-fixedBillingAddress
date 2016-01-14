@@ -35,7 +35,7 @@
                                 <change_billing_allowed>0</change_billing_allowed>
                             </depends>
                         </select_billing_allowed>
-                        <use_billing_for_shipping_forbidden>
+                        <use_billing_for_shipping_forbidden translate="label comment" module="quafzi_fixedbillingaddress">
                             <label>Customer is forbidden to use billing address for shipping</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -65,6 +65,24 @@
                                 <change_shipping_allowed>0</change_shipping_allowed>
                             </depends>
                         </select_shipping_allowed>
+                        <create_modify_additional_address_allowed translate="label comment" module="quafzi_fixedbillingaddress">
+                            <label>Customer is allowed to create and/or modify additional addresses</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </create_modify_additional_address_allowed>
+                        <delete_additional_address_allowed translate="label comment" module="quafzi_fixedbillingaddress">
+                            <label>Customer is allowed to delete additional addresses</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </delete_additional_address_allowed>
                     </fields>
                 </address>
             </groups>

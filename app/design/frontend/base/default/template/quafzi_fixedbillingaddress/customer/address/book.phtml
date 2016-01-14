@@ -23,7 +23,11 @@
 ?>
 <div class="page-title title-buttons">
     <h1><?php echo $this->__('Address Book') ?></h1>
-    <button type="button" title="<?php echo $this->__('Add New Address') ?>" class="button" onclick="window.location='<?php echo $this->getAddAddressUrl() ?>';"><span><span><?php echo $this->__('Add New Address') ?></span></span></button>
+<?php /* THIS IS THE FIRST CHANGE OF THIS FILE */ ?>
+    <?php if(Mage::helper('quafzi_fixedbillingaddress')->isCreateOrModifyAdditionalAddressAllowed()): ?>
+        <button type="button" title="<?php echo $this->__('Add New Address') ?>" class="button" onclick="window.location='<?php echo $this->getAddAddressUrl() ?>';"><span><span><?php echo $this->__('Add New Address') ?></span></span></button>
+    <?php endif; ?>
+<?php /* END OF CHANGE */ ?>
 </div>
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 <div class="col2-set addresses-list">
@@ -36,7 +40,7 @@
                 <address>
                     <?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>
                 </address>
-<?php /* THIS IS THE FIRST CHANGE OF THIS FILE */ ?>
+<?php /* THIS IS THE SECOND CHANGE OF THIS FILE */ ?>
                 <?php if (false === Mage::helper('quafzi_fixedbillingaddress/data')->isBillingAddressFixed()): ?>
                 <p><a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Billing Address') ?></a></p>
                 <?php endif; ?>
@@ -55,7 +59,7 @@
                 <address>
                     <?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>
                 </address>
-<?php /* THIS IS THE SECOND CHANGE OF THIS FILE */ ?>
+<?php /* THIS IS THE THIRD CHANGE OF THIS FILE */ ?>
             <?php if (false === Mage::helper('quafzi_fixedbillingaddress/data')->isShippingAddressFixed()): ?>
                 <p><a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Shipping Address') ?></a></p>
             <?php endif; ?>
@@ -78,7 +82,16 @@
                 <address>
                     <?php echo $this->getAddressHtml($_address) ?>
                 </address>
-                <p><a href="<?php echo $this->getUrl('customer/address/edit', array('id'=>$_address->getId())) ?>"><?php echo $this->__('Edit Address') ?></a> <span class="separator">|</span> <a href="#" class="link-remove" onclick="return deleteAddress('<?php echo $_address->getId() ?>');"><?php echo $this->__('Delete Address') ?></a></p>
+                <p>
+<?php /* THIS IS THE FOURTH CHANGE OF THIS FILE */ ?>
+                <?php if(Mage::helper('quafzi_fixedbillingaddress')->isCreateOrModifyAdditionalAddressAllowed()): ?>
+                    <a href="<?php echo $this->getUrl('customer/address/edit', array('id'=>$_address->getId())) ?>"><?php echo $this->__('Edit Address') ?></a>
+                <?php endif ?>
+                <?php if(Mage::helper('quafzi_fixedbillingaddress')->isDeleteAdditionalAddressAllowed()): ?>
+                    <span class="separator">|</span> <a href="#" class="link-remove" onclick="return deleteAddress('<?php echo $_address->getId() ?>');"><?php echo $this->__('Delete Address') ?></a>
+                <?php endif ?>
+<?php /* END OF CHANGE */ ?>
+                </p>
             </li>
             <?php endforeach; ?>
         <?php else: ?>
@@ -92,6 +105,8 @@
 <div class="buttons-set">
     <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
 </div>
+<?php /* THIS IS THE FIFTH CHANGE OF THIS FILE */ ?>
+<?php if(Mage::helper('quafzi_fixedbillingaddress')->isDeleteAdditionalAddressAllowed()): ?>
 <script type="text/javascript">
 //<![CDATA[
     function deleteAddress(addressId) {
@@ -102,3 +117,5 @@
     }
 //]]>
 </script>
+<?php endif ?>
+<?php /* END OF CHANGE */ ?>

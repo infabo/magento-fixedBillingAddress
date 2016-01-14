@@ -44,6 +44,10 @@ class Quafzi_FixedBillingAddress_Block_Checkout_Onepage_Shipping extends Mage_Ch
                     ->setValue($addressId)
                     ->setOptions($options);
 
+                if (Mage::helper('quafzi_fixedbillingaddress')->isCreateOrModifyAdditionalAddressAllowed()) {
+                    $select->addOption('', Mage::helper('checkout')->__('New Address'));
+                }
+
                 return $select->getHtml();
             } else {
                 $selectId = $type . '-address-select';

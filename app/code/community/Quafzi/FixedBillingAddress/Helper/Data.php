@@ -53,6 +53,22 @@ class Quafzi_FixedBillingAddress_Helper_Data extends Mage_Core_Helper_Abstract
         return (false === $isAdmin && false === $isForbidden);
     }
 
+    public function isCreateOrModifyAdditionalAddressAllowed()
+    {
+        $isAdmin = Mage::getSingleton('admin/session')->isLoggedIn();
+        $isAllowed = (bool)(int)Mage::getStoreConfig('customer/address/create_modify_additional_address_allowed');
+
+        return (false === $isAdmin && true === $isAllowed);
+    }
+
+    public function isDeleteAdditionalAddressAllowed()
+    {
+        $isAdmin = Mage::getSingleton('admin/session')->isLoggedIn();
+        $isAllowed = (bool)(int)Mage::getStoreConfig('customer/address/delete_additional_address_allowed');
+
+        return (false === $isAdmin && true === $isAllowed);
+    }
+
     /**
      * if customer already has a billing address
      *
