@@ -19,7 +19,6 @@
             <checkout>
                 <rewrite>
                     <onepage_billing>Quafzi_FixedBillingAddress_Block_Checkout_Onepage_Billing</onepage_billing>
-                    <onepage_shipping>Quafzi_FixedBillingAddress_Block_Checkout_Onepage_Sipping</onepage_shipping>
                     <onepage_shipping>Quafzi_FixedBillingAddress_Block_Checkout_Onepage_Shipping</onepage_shipping>
                 </rewrite>
             </checkout>
@@ -99,6 +98,8 @@
             <address>
                 <change_billing_allowed>1</change_billing_allowed>
                 <change_shipping_allowed>1</change_shipping_allowed>
+                <select_billing_allowed>1</select_billing_allowed>
+                <select_shipping_allowed>1</select_shipping_allowed>
             </address>
         </customer>
     </default>

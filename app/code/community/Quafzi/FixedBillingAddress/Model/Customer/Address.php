@@ -7,20 +7,33 @@
  * @author     Thomas Birke <tbirke@netextreme.de>
  * @author     Ingo Fabbri <if@newtown.at>
  */
-class Quafzi_FixedBillingAddress_Model_Customer_Address
-    extends Mage_Customer_Model_Address
+class Quafzi_FixedBillingAddress_Model_Customer_Address extends Mage_Customer_Model_Address
 {
     public function setIsDefaultBilling($value)
     {
-        if (false === $this->_isFixed()) {
+        if (false === $this->_isBillingFixed()) {
             parent::setIsDefaultBilling($value);
         }
 
         return $this;
     }
 
-    protected function _isFixed()
+    public function setIsDefaultShipping($value)
+    {
+        if (false === $this->_isShippingFixed()) {
+            parent::setIsDefaultShipping($value);
+        }
+
+        return $this;
+    }
+
+    protected function _isBillingFixed()
     {
         return Mage::helper('quafzi_fixedbillingaddress/data')->isBillingAddressFixed();
+    }
+
+    protected function _isShippingFixed()
+    {
+        return Mage::helper('quafzi_fixedbillingaddress/data')->isShippingAddressFixed();
     }
 }

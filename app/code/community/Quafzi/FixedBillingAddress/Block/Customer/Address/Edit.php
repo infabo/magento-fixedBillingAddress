@@ -7,8 +7,7 @@
  * @author     Thomas Birke <tbirke@netextreme.de>
  * @author     Ingo Fabbri <if@newtown.at>
  */
-class Quafzi_FixedBillingAddress_Block_Customer_Address_Edit
-    extends Mage_Customer_Block_Address_Edit
+class Quafzi_FixedBillingAddress_Block_Customer_Address_Edit extends Mage_Customer_Block_Address_Edit
 {
     public function canSetAsDefaultBilling()
     {

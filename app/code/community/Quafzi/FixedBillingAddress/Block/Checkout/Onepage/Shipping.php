@@ -12,16 +12,49 @@ class Quafzi_FixedBillingAddress_Block_Checkout_Onepage_Shipping extends Mage_Ch
 {
     public function getAddressesHtmlSelect($type)
     {
-        if ('shipping' !== $type
-            || false === Mage::helper('quafzi_fixedbillingaddress/data')->isShippingAddressFixed()
-        ) {
-            return parent::getAddressesHtmlSelect($type);
-        }
-        $selectId = $type . '-address-select';
-        $js = '<script type="text/javascript">$("' . $selectId . '").parentElement.previousElementSibling.hide()</script>';
+        if ($this->isCustomerLoggedIn()) {
+            if ('shipping' !== $type
+                || false === Mage::helper('quafzi_fixedbillingaddress/data')->isShippingAddressFixed()
+            ) {
+                return parent::getAddressesHtmlSelect($type);
+            }
 
-        return '<input id="' . $selectId . '" type="hidden" value="' . $this->getAddress()->getAddressId() . '">'
-        . $this->_getShippingAddressHtml() . $js;
+            if (Mage::helper('quafzi_fixedbillingaddress')->isShippingAddressSelectable()) {
+                $options = array();
+                foreach ($this->getCustomer()->getAddresses() as $address) {
+                    $options[] = array(
+                        'value' => $address->getId(),
+                        'label' => $address->format('oneline')
+                    );
+                }
+
+                $addressId = $this->getAddress()->getCustomerAddressId();
+                if (empty($addressId)) {
+                    $address = $this->getCustomer()->getPrimaryShippingAddress();
+                    if ($address) {
+                        $addressId = $address->getId();
+                    }
+                }
+
+                $select = $this->getLayout()->createBlock('core/html_select')
+                    ->setName($type . '_address_id')
+                    ->setId($type . '-address-select')
+                    ->setClass('address-select')
+                    ->setExtraParams('onchange="' . $type . '.newAddress(!this.value)"')
+                    ->setValue($addressId)
+                    ->setOptions($options);
+
+                return $select->getHtml();
+            } else {
+                $selectId = $type . '-address-select';
+                $js = '<script type="text/javascript">$("' . $selectId . '").parentElement.previousElementSibling.hide()</script>';
+
+                return '<input id="' . $selectId . '" type="hidden" value="' . $this->getAddress()->getAddressId() . '">'
+                . $this->_getShippingAddressHtml() . $js;
+            }
+        }
+
+        return '';
     }
 
     protected function _getShippingAddressHtml()

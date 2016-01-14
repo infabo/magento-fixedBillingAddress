@@ -7,8 +7,7 @@
  * @author     Thomas Birke <tbirke@netextreme.de>
  * @author     Ingo Fabbri <if@newtown.at>
  */
-class Quafzi_FixedBillingAddress_Helper_Data
-    extends Mage_Core_Helper_Abstract
+class Quafzi_FixedBillingAddress_Helper_Data extends Mage_Core_Helper_Abstract
 {
     public function isBillingAddressFixed()
     {
@@ -26,6 +25,24 @@ class Quafzi_FixedBillingAddress_Helper_Data
         $isChangeable = (bool)(int)Mage::getStoreConfig('customer/address/change_shipping_allowed');
 
         return (false === $isAdmin && false === $isChangeable && true === $hasShippingAddress);
+    }
+
+    public function isBillingAddressSelectable()
+    {
+        $isAdmin = Mage::getSingleton('admin/session')->isLoggedIn();
+        $hasBillingAddress = $this->_hasBillingAddress();
+        $isSelectable = (bool)(int)Mage::getStoreConfig('customer/address/select_billing_allowed') && !(bool)(int)Mage::getStoreConfig('customer/address/change_billing_allowed');
+
+        return (false === $isAdmin && false === $isSelectable && true === $hasBillingAddress);
+    }
+
+    public function isShippingAddressSelectable()
+    {
+        $isAdmin = Mage::getSingleton('admin/session')->isLoggedIn();
+        $hasShippingAddress = $this->_hasShippingAddress();
+        $isSelectable = (bool)(int)Mage::getStoreConfig('customer/address/select_shipping_allowed') && !(bool)(int)Mage::getStoreConfig('customer/address/change_shipping_allowed');
+
+        return (false === $isAdmin && false === $isSelectable && true === $hasShippingAddress);
     }
 
     /**
