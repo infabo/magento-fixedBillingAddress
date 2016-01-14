@@ -1,4 +1,4 @@
-jQuery(document).ready(function (jQuery) {
+jQuery(document).ready(function () {
     //Billing step
     jQuery('#billing:use_for_shipping_yes').prop('checked', false)(); //uncheck "Ship to this address"
     jQuery('#billing:use_for_shipping_yes').hide();
