@@ -3,3 +3,4 @@ app/code/community/Quafzi/FixedBillingAddress app/code/community/Quafzi/FixedBil
 app/design/frontend/base/default/layout/quafzi_fixedbillingaddress.xml app/design/frontend/base/default/layout/quafzi_fixedbillingaddress.xml
 app/design/frontend/base/default/template/quafzi_fixedbillingaddress/ app/design/frontend/base/default/template/quafzi_fixedbillingaddress/
 app/locale/de_DE/Quafzi_FixedBillingAddress.csv app/locale/de_DE/Quafzi_FixedBillingAddress.csv
+skin/frontend/base/default/js/quafzi_fixedbillingaddress skin/frontend/base/default/js/quafzi_fixedbillingaddress
