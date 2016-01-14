@@ -1,4 +1,5 @@
 <?php
+
 class Quafzi_FixedBillingAddress_Block_Checkout_Onepage_Billing
     extends Mage_Checkout_Block_Onepage_Billing
 {
@@ -11,8 +12,9 @@ class Quafzi_FixedBillingAddress_Block_Checkout_Onepage_Billing
         }
         $selectId = 'billing-address-select';
         $js = '<script type="text/javascript">$("' . $selectId . '").parentElement.previousElementSibling.hide()</script>';
+
         return '<input id="' . $selectId . '" type="hidden" value="' . $this->getAddress()->getAddressId() . '">'
-            . $this->_getBillingAddressHtml() . $js;
+        . $this->_getBillingAddressHtml() . $js;
     }
 
     protected function _getBillingAddressHtml()

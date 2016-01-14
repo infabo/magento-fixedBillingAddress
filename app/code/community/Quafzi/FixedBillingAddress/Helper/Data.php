@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @category   Customer
  * @package    Quafzi_FixedBillingAddress
@@ -24,7 +25,7 @@ class Quafzi_FixedBillingAddress_Helper_Data
      */
     protected function _hasBillingAddress()
     {
-        return (bool) $this->_getCustomer()->getDefaultBilling();
+        return (bool)$this->_getCustomer()->getDefaultBilling();
     }
 
     /**

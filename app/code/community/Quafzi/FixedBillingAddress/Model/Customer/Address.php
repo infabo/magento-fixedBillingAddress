@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @category   Customer
  * @package    Quafzi_FixedBillingAddress
@@ -13,6 +14,7 @@ class Quafzi_FixedBillingAddress_Model_Customer_Address
         if (false === $this->_isFixed()) {
             parent::setIsDefaultBilling($value);
         }
+
         return $this;
     }
 

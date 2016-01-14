@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @category   Customer
  * @package    Quafzi_FixedBillingAddress
@@ -13,6 +14,7 @@ class Quafzi_FixedBillingAddress_Block_Customer_Address_Edit
         if (Mage::helper('quafzi_fixedbillingaddress/data')->isAddressFixed()) {
             return false;
         }
+
         return parent::canSetAsDefaultBilling();
     }
 }

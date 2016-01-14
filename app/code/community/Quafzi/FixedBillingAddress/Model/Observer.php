@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @category   Customer
  * @package    Quafzi_FixedBillingAddress
