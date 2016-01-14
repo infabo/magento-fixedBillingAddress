@@ -33,7 +33,7 @@ class Quafzi_FixedBillingAddress_Helper_Data extends Mage_Core_Helper_Abstract
         $hasBillingAddress = $this->_hasBillingAddress();
         $isSelectable = (bool)(int)Mage::getStoreConfig('customer/address/select_billing_allowed') && !(bool)(int)Mage::getStoreConfig('customer/address/change_billing_allowed');
 
-        return (false === $isAdmin && false === $isSelectable && true === $hasBillingAddress);
+        return (false === $isAdmin && true === $isSelectable && true === $hasBillingAddress);
     }
 
     public function isShippingAddressSelectable()
@@ -42,7 +42,7 @@ class Quafzi_FixedBillingAddress_Helper_Data extends Mage_Core_Helper_Abstract
         $hasShippingAddress = $this->_hasShippingAddress();
         $isSelectable = (bool)(int)Mage::getStoreConfig('customer/address/select_shipping_allowed') && !(bool)(int)Mage::getStoreConfig('customer/address/change_shipping_allowed');
 
-        return (false === $isAdmin && false === $isSelectable && true === $hasShippingAddress);
+        return (false === $isAdmin && true === $isSelectable && true === $hasShippingAddress);
     }
 
     /**
