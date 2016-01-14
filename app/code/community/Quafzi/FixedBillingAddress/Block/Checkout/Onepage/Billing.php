@@ -49,11 +49,6 @@ class Quafzi_FixedBillingAddress_Block_Checkout_Onepage_Billing extends Mage_Che
         return '';
     }
 
-    public function canShip()
-    {
-        return parent::canShip() && Mage::helper('quafzi_fixedbillingaddress')->canUseBillingAddressForShipping();
-    }
-
     protected function _getBillingAddressHtml()
     {
         $address = $this->getCustomer()->getPrimaryBillingAddress();
